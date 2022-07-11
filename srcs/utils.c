@@ -6,7 +6,7 @@
 /*   By: cjimenez <cjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:28:27 by cjimenez          #+#    #+#             */
-/*   Updated: 2022/06/27 15:43:40 by cjimenez         ###   ########.fr       */
+/*   Updated: 2022/07/11 12:30:47 by cjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,16 @@ int	is_strnum(char *str)
 			return (0);
 	}
 	return (1);
+}
+
+void	ft_error(char *str)
+{
+	int	i;
+	
+	i = 0;
+	while (str[i])
+	{
+		write(2, &str[i], 1);
+		i++;
+	}
 }

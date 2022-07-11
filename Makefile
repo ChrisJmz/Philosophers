@@ -2,6 +2,7 @@ NAME = philo
 
 SRCS =	srcs/main.c		\
 		srcs/utils.c	\
+		srcs/init.c		\
 
 OBJS = ${SRCS:.c=.o}
 CC = gcc
