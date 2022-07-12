@@ -6,57 +6,62 @@
 /*   By: cjimenez <cjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 12:21:35 by cjimenez          #+#    #+#             */
-/*   Updated: 2022/07/11 14:41:20 by cjimenez         ###   ########.fr       */
+/*   Updated: 2022/07/12 15:56:59 by cjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int check_max(char *av)
+void    init_arg(char **av, t_params *params)
 {
-    if (ft_strlen(av) > 11)
-        return (1);
-    if (av[0] == '-')
-    {
-        if (ft_atoi(av) > 0)
-            return (1);
-    }
-    else
-    {
-        if (ft_atoi(av) < 0)
-            return (1);
-    }
-    return (0);
+    params->nb_philo = ft_atoi(av[1]);
+    params->tt_die = ft_atoi(av[2]);
+    params->tt_eat = ft_atoi(av[3]);
+    params->tt_sleep = ft_atoi(av[4]);
+    params->status = 1;
+    params->finish = 0;
 }
 
-int    check_args(char **av, int i)
+void    init_mutex(t_env *env)
 {
-    while (av[i])
-    {
-        if (is_strnum(av[i]) == 0 || check_max(av[i]) == 1)
-            return (printf("Error\n"), 1);
-        i++;
-    }
-    return (0);
+    env->params->forks = malloc(sizeof(pthread_mutex_t));
+    if (!env->params->forks)
+        return ;
+    env->params->lock = malloc(sizeof(pthread_mutex_t));
+    if (!env->params->lock)
+        return ;
+    pthread_mutex_init(env->params->forks, NULL);
+    pthread_mutex_init(env->params->lock, NULL);
 }
 
-
-void    init_arg(int ac, char **av, t_env *env)
+t_env *init_philo(char **av, t_params **params)
 {
-    if (ac < 5)
+    t_env   *env;
+    int i;
+    
+    i = -1;
+    init_arg(av, *params);
+    env = malloc(sizeof(t_env) * (ft_atoi(av[1])));
+    if (!env)
+        return (0);
+    while (++i < ft_atoi(av[1]))
     {
-        printf("Error\n");
-        exit (ERROR);
+        env[i].params = *params;
+        env[i].id = i;
+        env[i].laps = -1;
+        env[i].laps_done = 0;
+        env[i].last_eat = 0;
+        env[i].status = 1;
+        pthread_mutex_init(&env[i].right_fork, NULL);
+        pthread_mutex_init(&env[i].lock, NULL);
+        env[(i + 1) % env->params->nb_philo].left_fork
+            = &env[i].right_fork;
     }
-    else if (check_args(av, 1) == 0)
-    {
-        env->nb_philo = ft_atoi(av[1]);
-        env->tt_die = ft_atoi(av[2]);
-        env->tt_eat = ft_atoi(av[3]);
-        env->tt_sleep = ft_atoi(av[4]);
-        env->must_eat = -1;
-        env->is_running = true;
-        if (ac == 6)
-            env->must_eat = ft_atoi(av[5]);
-    }
+    return (env);
 }
+
+// void    loop_philo(t_env *env)
+// {
+//     int i;
+// }
+

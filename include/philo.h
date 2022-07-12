@@ -6,7 +6,7 @@
 /*   By: cjimenez <cjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:23:14 by cjimenez          #+#    #+#             */
-/*   Updated: 2022/07/11 14:43:27 by cjimenez         ###   ########.fr       */
+/*   Updated: 2022/07/12 15:57:02 by cjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,39 +34,50 @@ typedef struct s_env t_env;
 //     DEAD;
 // }   t_status;
 
-typedef struct s_philo
-{
-    int         id;
-    int         left;
-    int         right;
-    int         eat_count;
-    bool        done;
-    uint64_t    last_eat;
-    pthread_t   thread;
-    t_env       *env;
-}   t_philo;
-
-typedef struct s_env
+typedef struct s_params
 {
     int             nb_philo;
+    int             nb_eat;
     int             tt_die;
     int             tt_eat;
     int             tt_sleep;
-    int             must_eat;
-    int             count_done;
-    bool            is_running;
-    t_philo         *philos;
+    int             status;
+    long long       time_start;
+    int             finish;
     pthread_mutex_t *forks;
-    pthread_mutex_t write;
+    pthread_mutex_t *lock;
+}   t_params;
+
+typedef struct s_env
+{
+    pthread_t       thread;
+    t_params        *params;
+    int             id;
+    long long int   last_eat;
+    int             eat;
+    int             laps;
+    int             status;
+    int             laps_done;
+    pthread_mutex_t *left_fork;
+    pthread_mutex_t right_fork;
+    pthread_mutex_t lock;
+    pthread_mutex_t lock2;
+    pthread_mutex_t aff;
 }   t_env;
 
 //  inits
-void    init_arg(int ac, char **av, t_env *env);
+void    init_arg(char **av, t_params *params);
+void    init_mutex(t_env *env);
+t_env   *init_philo(char **av, t_params **params);
 
 //  utils
 int     ft_atoi(const char *nptr);
 int     ft_strlen(const char *str);
 int     is_strnum(char *str);
 void    ft_error(char *str);
+
+// args check
+int     check_max(char *av);
+int    check_args(int ac, char **av, int i);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cjimenez <cjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:28:27 by cjimenez          #+#    #+#             */
-/*   Updated: 2022/07/11 12:30:47 by cjimenez         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:54:52 by cjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,17 @@ int	ft_atoi(const char *nptr)
 	return (number * neg);
 }
 
-int ft_strlen(const char *str)
+int	ft_strlen(const char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(str[i])
-        i++;
-    return (i);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
-static int  is_digit(int c)
+static int	is_digit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
@@ -73,7 +73,7 @@ int	is_strnum(char *str)
 void	ft_error(char *str)
 {
 	int	i;
-	
+
 	i = 0;
 	while (str[i])
 	{

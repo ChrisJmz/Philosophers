@@ -1,12 +1,13 @@
 NAME = philo
 
-SRCS =	srcs/main.c		\
-		srcs/utils.c	\
-		srcs/init.c		\
+SRCS =	srcs/main.c			\
+		srcs/utils.c		\
+		srcs/init.c			\
+		srcs/check_args.c	\
 
 OBJS = ${SRCS:.c=.o}
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
 INC = -I./include
 RM = rm -rf
 
