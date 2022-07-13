@@ -6,7 +6,7 @@
 /*   By: cjimenez <cjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:23:14 by cjimenez          #+#    #+#             */
-/*   Updated: 2022/07/12 15:57:02 by cjimenez         ###   ########.fr       */
+/*   Updated: 2022/07/13 15:41:45 by cjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_env
 void    init_arg(char **av, t_params *params);
 void    init_mutex(t_env *env);
 t_env   *init_philo(char **av, t_params **params);
+t_env   *init_philo_5(char **av, t_params **params);
 
 //  utils
 int     ft_atoi(const char *nptr);
