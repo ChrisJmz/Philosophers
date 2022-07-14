@@ -6,7 +6,7 @@
 /*   By: cjimenez <cjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:23:14 by cjimenez          #+#    #+#             */
-/*   Updated: 2022/07/13 15:41:45 by cjimenez         ###   ########.fr       */
+/*   Updated: 2022/07/14 15:29:24 by cjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,12 @@ t_env   *init_philo(char **av, t_params **params);
 t_env   *init_philo_5(char **av, t_params **params);
 
 //  utils
-int     ft_atoi(const char *nptr);
-int     ft_strlen(const char *str);
-int     is_strnum(char *str);
-void    ft_error(char *str);
+int                 ft_atoi(const char *nptr);
+int                 ft_strlen(const char *str);
+int                 is_strnum(char *str);
+void                ft_error(char *str);
+long unsigned int   timer(void);
+void                print_msg(t_env *env, const char *str);
 
 // args check
 int     check_max(char *av);

@@ -4,6 +4,8 @@ SRCS =	srcs/main.c			\
 		srcs/utils.c		\
 		srcs/init.c			\
 		srcs/check_args.c	\
+		srcs/time.c			\
+		srcs/print_msg.c	\
 
 OBJS = ${SRCS:.c=.o}
 CC = gcc
