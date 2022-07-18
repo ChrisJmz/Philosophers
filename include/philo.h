@@ -6,7 +6,7 @@
 /*   By: cjimenez <cjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:23:14 by cjimenez          #+#    #+#             */
-/*   Updated: 2022/07/18 13:06:17 by cjimenez         ###   ########.fr       */
+/*   Updated: 2022/07/18 16:43:54 by cjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_env t_env;
 typedef struct s_params
 {
     int             nb_philo;
-    int             nb_eat;
     int             tt_die;
     int             tt_eat;
     int             tt_sleep;
@@ -61,15 +60,14 @@ typedef struct s_env
     pthread_mutex_t *left_fork;
     pthread_mutex_t right_fork;
     pthread_mutex_t lock;
-    pthread_mutex_t lock2;
-    pthread_mutex_t aff;
 }   t_env;
 
 //  inits
 void    init_arg(char **av, t_params *params);
-void    init_mutex(t_env *env);
+int     init_mutex(t_env *env);
 t_env   *init_philo(char **av, t_params **params);
 t_env   *init_philo_5(char **av, t_params **params);
+void    init_philo_1(t_env *env);
 
 //  utils
 int                 ft_atoi(const char *nptr);
@@ -78,6 +76,9 @@ int                 is_strnum(char *str);
 void                ft_error(char *str);
 long unsigned int   timer(void);
 void                print_msg(t_env *env, const char *str);
+void                destroy_mutex(t_env *env);
+void                ft_usleep(long unsigned int ms, t_env *env);
+int                 philo_status(t_env *env);
 
 // args check
 int     check_max(char *av);
@@ -86,5 +87,11 @@ int    check_args(int ac, char **av, int i);
 // philo status
 void    sleeping(t_env *env);
 void    thinking(t_env *env);
+int     eating(t_env *env);
+int     take_fork(t_env *env);
+void    dead(t_env *env);
 
+// execute philo
+void    pexecute(t_env *env);
+void	run(t_env *env);
 #endif

@@ -7,10 +7,11 @@ SRCS =	srcs/main.c			\
 		srcs/time.c			\
 		srcs/print_msg.c	\
 		srcs/status.c		\
+		srcs/execute.c		\
 
 OBJS = ${SRCS:.c=.o}
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 INC = -I./include
 RM = rm -rf
 
