@@ -6,7 +6,7 @@
 /*   By: cjimenez <cjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:23:14 by cjimenez          #+#    #+#             */
-/*   Updated: 2022/07/14 15:29:24 by cjimenez         ###   ########.fr       */
+/*   Updated: 2022/07/18 13:06:17 by cjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,9 @@ void                print_msg(t_env *env, const char *str);
 // args check
 int     check_max(char *av);
 int    check_args(int ac, char **av, int i);
+
+// philo status
+void    sleeping(t_env *env);
+void    thinking(t_env *env);
 
 #endif

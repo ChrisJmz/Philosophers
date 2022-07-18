@@ -6,6 +6,7 @@ SRCS =	srcs/main.c			\
 		srcs/check_args.c	\
 		srcs/time.c			\
 		srcs/print_msg.c	\
+		srcs/status.c		\
 
 OBJS = ${SRCS:.c=.o}
 CC = gcc
