@@ -1,0 +1,13 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/cjimenez/Bureau/NV'
+gcc -Wall -Wextra -Werror -fsanitize=address -g3 -I./include -c srcs/main.c -o srcs/main.o
+gcc -Wall -Wextra -Werror -fsanitize=address -g3 -I./include -c srcs/utils.c -o srcs/utils.o
+gcc -Wall -Wextra -Werror -fsanitize=address -g3 -I./include -c srcs/init.c -o srcs/init.o
+gcc -Wall -Wextra -Werror -fsanitize=address -g3 -I./include -c srcs/check_args.c -o srcs/check_args.o
+gcc -Wall -Wextra -Werror -fsanitize=address -g3 -I./include -c srcs/time.c -o srcs/time.o
+gcc -Wall -Wextra -Werror -fsanitize=address -g3 -I./include -c srcs/print_msg.c -o srcs/print_msg.o
+gcc -Wall -Wextra -Werror -fsanitize=address -g3 -I./include -c srcs/status.c -o srcs/status.o
+gcc -Wall -Wextra -Werror -fsanitize=address -g3 -I./include -c srcs/execute.c -o srcs/execute.o
+gcc -Wall -Wextra -Werror -fsanitize=address -g3 srcs/main.o srcs/utils.o srcs/init.o srcs/check_args.o srcs/time.o srcs/print_msg.o srcs/status.o srcs/execute.o -o philo
+make: Leaving directory '/home/cjimenez/Bureau/NV'
+ 

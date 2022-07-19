@@ -6,11 +6,11 @@
 /*   By: cjimenez <cjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:04:00 by cjimenez          #+#    #+#             */
-/*   Updated: 2022/07/18 14:40:23 by cjimenez         ###   ########.fr       */
+/*   Updated: 2022/07/19 13:16:13 by cjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../include/philo.h"
 
 void	destroy_mutex(t_env *env)
 {
@@ -23,15 +23,18 @@ int main(int ac, char **av)
 	t_params	*params;
 	t_env		*env;
 	
-	if (check_args (ac, av, 1) == 1)
+	ac--;
+	av++;
+	if (check_args (ac, av, 0) == 1)
 		return (printf("Wrong parameters\n"), 1);
 	params = malloc(sizeof(t_params));
 	if (!params)
 		return (1);
-	if (ac == 5)
+	if (ac == 4)
 		env = init_philo(av, &params);
-	else if (ac == 6)
+	else if (ac == 5)
 		env = init_philo_5(av, &params);
+    printf("%d %d %d %d", env->params->nb_philo, env->params->tt_die, env->params->tt_eat, env->params->tt_sleep);
 	run(env);
 	free(params);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: cjimenez <cjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 12:21:35 by cjimenez          #+#    #+#             */
-/*   Updated: 2022/07/18 15:54:59 by cjimenez         ###   ########.fr       */
+/*   Updated: 2022/07/19 13:16:57 by cjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void    init_arg(char **av, t_params *params)
 {
-    params->nb_philo = ft_atoi(av[1]);
-    params->tt_die = ft_atoi(av[2]);
-    params->tt_eat = ft_atoi(av[3]);
-    params->tt_sleep = ft_atoi(av[4]);
+    params->nb_philo = ft_atoi(av[0]);
+    params->tt_die = ft_atoi(av[1]);
+    params->tt_eat = ft_atoi(av[2]);
+    params->tt_sleep = ft_atoi(av[3]);
     params->status = 1;
     params->finish = 0;
 }
@@ -41,10 +41,10 @@ t_env *init_philo(char **av, t_params **params)
     static int i = -1;
     
     init_arg(av, *params);
-    env = malloc(sizeof(t_env) * (ft_atoi(av[1])));
+    env = malloc(sizeof(t_env) * (ft_atoi(av[0])));
     if (!env)
         return (0);
-    while (++i < ft_atoi(av[1]))
+    while (++i < ft_atoi(av[0]))
     {
         env[i].params = *params;
         env[i].id = i;
@@ -66,16 +66,16 @@ t_env *init_philo_5(char **av, t_params **params)
     static int i = -1;
     
     init_arg(av, *params);
-    env = malloc(sizeof(t_env) * (ft_atoi(av[1])));
+    env = malloc(sizeof(t_env) * (ft_atoi(av[0])));
     if (!env)
         return (0);
-    while (++i < ft_atoi(av[1]))
+    while (++i < ft_atoi(av[0]))
     {
         env[i].params = *params;
         env[i].id = i;
         env[i].laps_done = 0;
         env[i].last_eat = 0;
-        env[i].laps = ft_atoi(av[5]);
+        env[i].laps = ft_atoi(av[4]);
         pthread_mutex_init(&env[i].lock, NULL);
         pthread_mutex_init(&env[i].right_fork, NULL);
         env[(i + 1) % env->params->nb_philo].left_fork
