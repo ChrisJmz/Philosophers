@@ -6,7 +6,7 @@
 /*   By: cjimenez <cjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 12:34:15 by cjimenez          #+#    #+#             */
-/*   Updated: 2022/07/19 13:11:56 by cjimenez         ###   ########.fr       */
+/*   Updated: 2022/07/19 13:54:04 by cjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int   eating(t_env *env)
         return (1);
     print_msg(env, "is eating");
     pthread_mutex_lock(env->params->forks);
-    env->last_eat = timer();
+    env->last_meal = timer();
     pthread_mutex_unlock(env->params->forks);
     ft_usleep(env->params->tt_eat, env);
     pthread_mutex_lock(env->params->forks);

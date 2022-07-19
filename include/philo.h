@@ -6,7 +6,7 @@
 /*   By: cjimenez <cjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:23:14 by cjimenez          #+#    #+#             */
-/*   Updated: 2022/07/18 16:43:54 by cjimenez         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:24:47 by cjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ typedef struct s_env
     pthread_t       thread;
     t_params        *params;
     int             id;
-    long long int   last_eat;
-    int             eat;
+    long long int   last_meal;
     int             laps;
     int             status;
     int             laps_done;

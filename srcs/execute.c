@@ -6,7 +6,7 @@
 /*   By: cjimenez <cjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 13:56:47 by cjimenez          #+#    #+#             */
-/*   Updated: 2022/07/18 15:48:39 by cjimenez         ###   ########.fr       */
+/*   Updated: 2022/07/19 14:37:27 by cjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int  pdead(t_env *env)
 {
-    if ((timer() - env->last_eat) >= (unsigned long)env->params->tt_die)
+    if ((timer() - env->last_meal) >= (unsigned long)env->params->tt_die)
     {
        dead(env);
        pthread_mutex_unlock(env->params->forks);
@@ -42,12 +42,12 @@ static void checking_forks(t_env *env, int ate, int i)
                     pthread_mutex_unlock(env[i].params->forks);
                     return ;
                 }
-                if (pdead(&env[i]))
-                    return ;
-                pthread_mutex_unlock(env[i].params->forks);
             }
-            usleep(200);
+            if (pdead(&env[i]))
+                return ;
+            pthread_mutex_unlock(env[i].params->forks);
         }
+        usleep(200);
     }
 }
 
