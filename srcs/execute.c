@@ -6,7 +6,7 @@
 /*   By: cjimenez <cjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 13:56:47 by cjimenez          #+#    #+#             */
-/*   Updated: 2022/07/19 14:37:27 by cjimenez         ###   ########.fr       */
+/*   Updated: 2022/07/20 11:55:24 by cjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,19 @@ static void checking_forks(t_env *env, int ate, int i)
 
 int philo_status(t_env *env)
 {
-    pthread_mutex_lock(env->params->forks);
-    if (env->params->status != 1)
-    {
-        pthread_mutex_unlock(env->params->forks);
-        return (0);
-    }
-    pthread_mutex_unlock(env->params->forks);
-    return (1);
+	pthread_mutex_lock(env->params->forks);
+	if (env->params->status != 1)
+	{
+		pthread_mutex_unlock(env->params->forks);
+		return (0);
+	}
+	pthread_mutex_unlock(env->params->forks);
+	return (1);
 }
 
 void    *act(void   *philo)
 {
-    t_env       *env;
+    t_env   *env;
 
     env = philo;
     while (philo_status(env) == 1)
@@ -104,7 +104,7 @@ void    pexecute(t_env *env)
     }
     ft_usleep(10, env);
     i = -1;
-    while (i++ < env->params->nb_philo)
+    while (++i < env->params->nb_philo)
     {
         if (i % 2 == 1)
             if ((pthread_create(&(env[i].thread), NULL, act, &env[i])))

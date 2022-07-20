@@ -6,36 +6,39 @@
 /*   By: cjimenez <cjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:28:27 by cjimenez          #+#    #+#             */
-/*   Updated: 2022/07/12 12:54:52 by cjimenez         ###   ########.fr       */
+/*   Updated: 2022/07/20 11:28:29 by cjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_atoi(const char *nptr)
+int	ft_atoi(const char *str)
 {
-	int	number;
-	int	a;
-	int	neg;
+	int			i;
+	long long	r;
+	int			verif;
 
-	neg = 1;
-	a = 0;
-	number = 0;
-	while (nptr[a] == '\t' || nptr[a] == '\n' || nptr[a] == '\r'
-		|| nptr[a] == '\v' || nptr[a] == '\f' || nptr[a] == ' ')
-		a++;
-	if (nptr[a] == '-' || nptr[a] == '+')
+	r = 0;
+	verif = 1;
+	i = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (nptr[a] == '-')
-			neg = -1;
-		a++;
+		if (str[i] == '-')
+			verif = -verif;
+		i++;
 	}
-	while (nptr[a] >= '0' && nptr[a] <= '9')
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		number = number * 10 + (nptr[a] - '0');
-		a++;
+		if (r * verif > 2147483647)
+			return (-1);
+		else if (r * verif < -2147483648)
+			return (0);
+		r = r * 10 + str[i] - 48;
+		i++;
 	}
-	return (number * neg);
+	return (r * verif);
 }
 
 int	ft_strlen(const char *str)

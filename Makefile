@@ -11,7 +11,7 @@ SRCS =	srcs/main.c			\
 
 OBJS = ${SRCS:.c=.o}
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 INC = -I./include
 RM = rm -rf
 
