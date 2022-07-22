@@ -6,7 +6,7 @@
 /*   By: cjimenez <cjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:04:00 by cjimenez          #+#    #+#             */
-/*   Updated: 2022/07/21 12:36:51 by cjimenez         ###   ########.fr       */
+/*   Updated: 2022/07/22 12:47:22 by cjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	destroy_mutex(t_env *env)
 	free(env->params->lock);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_params	*params;
 	t_env		*env;
-	
-	if (check_args (ac, av, 1) == 1 || ft_atoi(av[1]) > 200)
+
+	if (check_args (ac, av, 1) == 1)
 		return (printf("Wrong parameters\n"), 1);
 	params = malloc(sizeof(t_params));
 	if (!params)
@@ -41,7 +41,7 @@ int main(int ac, char **av)
 
 void	run(t_env *env)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!env)

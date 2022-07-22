@@ -12,16 +12,14 @@
 
 #include "philo.h"
 
-void    print_msg(t_env *env, const char *str)
+void	print_msg(t_env *env, const char *str)
 {
-    pthread_mutex_lock(env->params->forks);
-    if (env->params->status == 0)
-    {
-        pthread_mutex_unlock(env->params->forks);
-        return ;
-    }
-    printf("%lu %d %s\n", timer(), env->id + 1, str);
-    pthread_mutex_unlock(env->params->forks);
+	pthread_mutex_lock(env->params->forks);
+	if (env->params->status == 0)
+	{
+		pthread_mutex_unlock(env->params->forks);
+		return ;
+	}
+	printf("[\e[0;33m%lu ms\e[0m] %d %s\n", timer(), env->id + 1, str);
+	pthread_mutex_unlock(env->params->forks);
 }
-
-//"[\e[0;33m%lu ms\e[0m] Philo %d %s\n"
